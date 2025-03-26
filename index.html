@@ -21,7 +21,8 @@
             background-color: #252525;
             padding: 30px;
             border-radius: 12px;
-            width: 450px;
+            width: 90%; /* Adjust width for smaller screens */
+            max-width: 450px; /* Maximum width to maintain readability */
             box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
         }
         h2 {
@@ -29,18 +30,19 @@
             color: #4CAF50;
             margin-bottom: 20px;
             display: flex;
-            flex-direction: column; /* Stack items vertically */
+            flex-direction: column;
             align-items: center;
             justify-content: center;
         }
         h2 img {
-            margin-bottom: 0px; /* Add spacing below the image */
-            height: 450px; /* Adjust height as needed */
-            width: 450px; /* Adjust width as needed */
+            margin-bottom: 0px;
+            height: auto; /* Make image responsive */
+            width: 100%; /* Adjust width for smaller screens */
+            max-width: 450px; /* Match container max-width */
         }
         .form-group {
             margin-bottom: 20px;
-            position: relative; /* Add this */
+            position: relative;
         }
         label {
             display: block;
@@ -56,7 +58,7 @@
             color: #fff;
             border-radius: 6px;
             box-sizing: border-box;
-            padding-left: 40px; /* Add this */
+            padding-left: 40px;
         }
         button, .register-button {
             padding: 14px 20px;
@@ -66,11 +68,11 @@
             font-size: 18px;
             width: 100%;
             transition: background-color 0.3s ease;
-            height: 50px; /* Set a fixed height */
+            height: 50px;
             display: flex;
             justify-content: center;
             align-items: center;
-            box-sizing: border-box; /* Ensure padding doesn't affect overall size */
+            box-sizing: border-box;
         }
         .claim-button {
             background-color: #4CAF50;
@@ -118,7 +120,7 @@
 <body>
     <div class="container">
         <h2>
-            <img src="https://cdn.glitch.global/98864b85-1f3e-4005-b562-c76cd00dd9d3/bybit.jpg" alt="Bybit Logo" style="height: 450px; width: 450px;">
+            <img src="https://cdn.glitch.global/98864b85-1f3e-4005-b562-c76cd00dd9d3/bybit.jpg" alt="Bybit Logo">
             🎉Request MemeX Gas Token
         </h2>
         <p>⚡ The fastest and cheapest transfer meme token.</p>
