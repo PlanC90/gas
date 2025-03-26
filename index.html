@@ -164,6 +164,11 @@
         form.addEventListener('submit', function(event) {
             event.preventDefault(); // Prevent the default form submission
 
+            // Disable the claim button immediately after submission
+            claimButton.disabled = true;
+            claimButton.style.backgroundColor = '#6c757d';
+            claimButton.style.cursor = 'not-allowed';
+
             // Perform the form submission using fetch
             fetch('process.php', {
                 method: 'POST',

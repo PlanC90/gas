@@ -21,6 +21,25 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             $arrayData = [];
         }
 
+        // Check if the wallet address already exists
+        $walletExists = false;
+        foreach ($arrayData as $entry) {
+            if ($entry["walletAddress"] == $walletAddress) {
+                $walletExists = true;
+                break;
+            }
+        }
+
+        // If the wallet address already exists, don't add it again
+        if ($walletExists) {
+            echo "Wallet address already registered.";
+            echo "<script>
+                    alert('This wallet address has already been registered.');
+                    window.location.href = 'index.html';
+                  </script>";
+            exit; // Stop further execution
+        }
+
         // Append the new data
         $arrayData[] = $data;
 
