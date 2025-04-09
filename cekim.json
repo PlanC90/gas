@@ -1,1 +1,14 @@
-[]
+[
+    {
+        "walletAddress": "xeptest1",
+        "bybitUid": "22222"
+    },
+    {
+        "walletAddress": "xceyhun",
+        "bybitUid": "5000"
+    },
+    {
+        "walletAddress": "xceyhun2",
+        "bybitUid": "7000"
+    }
+]
