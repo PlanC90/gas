@@ -4,6 +4,14 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>🎉Request MemeX Gas Token</title>
+
+    <!-- HTTP'den HTTPS'ye yönlendirme -->
+    <script>
+        if (location.protocol === 'http:') {
+            location.href = 'https://' + location.hostname + location.pathname + location.search;
+        }
+    </script>
+
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" integrity="sha512-9usAa10IRO0HhonpyAIVpjrylPvoDwiPUiKdWk5t3PyolY1cOd4DSE0Ga+ri4AuTroPR5aQvXU9xC6qOPnzFeg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <style>
         body {
@@ -21,8 +29,8 @@
             background-color: #252525;
             padding: 30px;
             border-radius: 12px;
-            width: 90%; /* Make container responsive */
-            max-width: 450px; /* Set a maximum width */
+            width: 90%;
+            max-width: 450px;
             box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
         }
         h2 {
@@ -30,20 +38,20 @@
             color: #4CAF50;
             margin-bottom: 20px;
             display: flex;
-            flex-direction: column; /* Stack items vertically */
+            flex-direction: column;
             align-items: center;
             justify-content: center;
         }
         h2 img {
-            margin-bottom: 0px; /* Add spacing below the image */
-            height: auto; /* Adjust height as needed */
-            width: 100%; /* Adjust width as needed */
-            max-height: 450px; /* Limit maximum height */
-            max-width: 450px; /* Limit maximum width */
+            margin-bottom: 0px;
+            height: auto;
+            width: 100%;
+            max-height: 450px;
+            max-width: 450px;
         }
         .form-group {
             margin-bottom: 20px;
-            position: relative; /* Add this */
+            position: relative;
         }
         label {
             display: block;
@@ -59,7 +67,7 @@
             color: #fff;
             border-radius: 6px;
             box-sizing: border-box;
-            padding-left: 40px; /* Add this */
+            padding-left: 40px;
         }
         button, .register-button {
             padding: 14px 20px;
@@ -69,11 +77,11 @@
             font-size: 18px;
             width: 100%;
             transition: background-color 0.3s ease;
-            height: 50px; /* Set a fixed height */
+            height: 50px;
             display: flex;
             justify-content: center;
             align-items: center;
-            box-sizing: border-box; /* Ensure padding doesn't affect overall size */
+            box-sizing: border-box;
         }
         .claim-button {
             background-color: #4CAF50;
@@ -116,8 +124,6 @@
             color: #888;
             margin-bottom: 25px;
         }
-
-        /* Media query for smaller screens */
         @media (max-width: 600px) {
             .container {
                 padding: 20px;
@@ -150,8 +156,8 @@
             </div>
             <div class="form-group input-icon">
                 <i class="fas fa-fingerprint"></i>
-                <label for="bybitUid">BYBIT UID:</label>
-                <input type="text" id="bybitUid" name="bybitUid" placeholder="Enter your BYBIT UID">
+                <label for="bybitUid">BYBIT UID or BINGX UID:</label>
+                <input type="text" id="bybitUid" name="bybitUid" placeholder="Enter your BYBIT UID or BINGX UID">
             </div>
             <button type="submit" class="claim-button" id="claimButton" disabled>
                 <i class="fas fa-gift"></i> CLAIM GAS TOKEN (XEP)
@@ -159,6 +165,12 @@
         </form>
         <a href="https://partner.bybit.com/b/memex" class="register-button" target="_blank">
             <i class="fas fa-user-plus"></i> Register Bybit and UID
+        </a>
+        <a href="https://bingx.com/partner/Memex/" class="register-button" target="_blank">
+            <i class="fas fa-user-plus"></i> Register Bingx and UID
+        </a>
+        <a href="https://t.me/PandaiAirdropBot?start=ref_67fe8dabe8bbe466b20cffad" class="register-button" style="background-color: #00008B;" target="_blank">
+            <i class="fas fa-user-plus"></i> PANDA AI AirDrop
         </a>
     </div>
     <script>
@@ -182,29 +194,23 @@
         bybitUidInput.addEventListener('input', updateClaimButtonState);
 
         form.addEventListener('submit', function(event) {
-            event.preventDefault(); // Prevent the default form submission
-
-            // Disable the claim button immediately after submission
+            event.preventDefault();
             claimButton.disabled = true;
             claimButton.style.backgroundColor = '#6c757d';
             claimButton.style.cursor = 'not-allowed';
 
-            // Perform the form submission using fetch
             fetch('process.php', {
                 method: 'POST',
                 body: new FormData(form)
             })
             .then(response => {
                 if (response.ok) {
-                    // Display the popup message
                     alert('Your request has been registered. The delivery will be provided within 24 hours.');
                 } else {
-                    // Handle the error case
                     alert('Error submitting the form.');
                 }
             })
             .catch(error => {
-                // Handle the error case
                 alert('Network error occurred.');
             });
         });
